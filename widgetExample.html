@@ -7,16 +7,22 @@
         <div id="main">
             <h3>This is my first widget.</h3>
             <span id="labelText"></span>
-            <input type="text" id="userInput">
+            <input type="text" id="firstName">
+            <input type="text" id="lastName">
         </div>
         <script type="text/javascript">
-            const inputElm = document.querySelector("#userInput");
+            const firstNameInput = document.querySelector("#firstName");
+            const lastNameInput = document.querySelector("#lastName");
+
             function sendData() {
                 let data = {
-                    valid: true,
-                    value: inputElm.value
+                    firstName: firstNameInput.value,
+                    lastName: lastNameInput.value
                 }
-                JFCustomWidget.sendData(data);
+                JFCustomWidget.sendData({
+                    valid: true,
+                    value: JSON.stringify(data)
+                });
             }
             
             //always subscribe to ready event and implement widget related code
@@ -24,18 +30,16 @@
             JFCustomWidget.subscribe("ready", function(){
                 var label = JFCustomWidget.getWidgetSetting('QuestionLabel');
                 document.getElementById('labelText').innerHTML = label;
-                inputElm.addEventListener("change", (event) => {
-                    console.log("change", event);  
-                    sendData();
-                }); 
-                
+                firstNameInput.addEventListener("change", (event) => sendData()); 
+                lastNameInput.addEventListener("change", (event) => sendData()); 
+
                 //subscribe to form submit event
                 JFCustomWidget.subscribe("submit", function(){
                     var msg = {
                         //you should valid attribute to data for JotForm
                         //to be able to use youw widget as required
                         valid: true,
-                        value: inputElm.value
+                        value: firstNameInput.value
                     }
                     // send value to JotForm
                     JFCustomWidget.sendSubmit(msg);
