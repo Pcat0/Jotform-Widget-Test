@@ -9,6 +9,8 @@
             <span id="labelText"></span>
             <input type="text" id="firstName">
             <input type="text" id="lastName">
+            <br>
+            <img id="image" src="">
         </div>
         <script type="text/javascript">
             const firstNameInput = document.querySelector("#firstName");
@@ -18,6 +20,7 @@
                 const response = await fetch("https://dog.ceo/api/breeds/image/random");
                 const jsonData = await response.json();
                 console.log(jsonData);
+                document.querySelector("#image").src = jsonData.message;
             }
             
             function sendData() {
