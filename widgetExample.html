@@ -15,7 +15,7 @@
             const lastNameInput = document.querySelector("#lastName");
             
             async function callApi(){
-                const response = await fetch("http://example.com/movies.json");
+                const response = await fetch("https://dog.ceo/api/breeds/image/random");
                 const jsonData = await response.json();
                 console.log(jsonData);
             }
