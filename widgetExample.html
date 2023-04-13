@@ -13,7 +13,13 @@
         <script type="text/javascript">
             const firstNameInput = document.querySelector("#firstName");
             const lastNameInput = document.querySelector("#lastName");
-
+            
+            async function callApi(){
+                const response = await fetch("http://example.com/movies.json");
+                const jsonData = await response.json();
+                console.log(jsonData);
+            }
+            
             function sendData() {
                 let data = {
                     firstName: firstNameInput.value,
@@ -45,6 +51,8 @@
                     JFCustomWidget.sendSubmit(msg);
                 });
             });
+            
+            callApi();
         </script>
     </body>
 </html>
