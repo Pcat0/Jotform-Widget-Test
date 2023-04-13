@@ -12,7 +12,11 @@
         <script type="text/javascript">
             const inputElm = document.querySelector("#userInput");
             function sendData() {
-                JFCustomWidget.sendData(inputElm.value);
+                let data = {
+                    valid: true,
+                    value: inputElm.value
+                }
+                JFCustomWidget.sendData();
             }
             
             //always subscribe to ready event and implement widget related code
