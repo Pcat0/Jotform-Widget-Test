@@ -10,7 +10,7 @@
             <input type="text" id="title">
             <input type="text" id="body">
             <br>
-            //<img id="image" src="" width="300px">
+            <img id="image" src="" width="300px">
         </div>
         <script type="text/javascript">
             const titleInput = document.querySelector("#title");
@@ -31,10 +31,11 @@
             function populateWidgetData(data) {
                 getPost(data.value).then((postData) => {
                     console.log(postData);
+                    titleInput.value = postData.title;
+                    bodyInput.value = postData.body;
+                    sendData();    
                 });
-                //titleInput.value = postData.title;
-                //bodyInput.value = postData.body;
-                //sendData();                
+                          
                 
             }
             function sendData() {
