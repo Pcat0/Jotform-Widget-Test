@@ -56,6 +56,8 @@
                 
                 JFCustomWidget.subscribe('populate', (data)=>{
                     console.log(data);
+                    firstNameInput.value = data.value;
+                    sendData();
                 });
             });
             
