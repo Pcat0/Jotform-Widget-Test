@@ -33,7 +33,8 @@
                     console.log(postData);
                     titleInput.value = postData.title;
                     bodyInput.value = postData.body;
-                    sendData();    
+                    sendData();
+                    JFCustomWidget.sendData({value: data.value});
                 });
                           
                 
