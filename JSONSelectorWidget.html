@@ -16,7 +16,7 @@
           
             function populateWidgetData(data.value) {
                 console.log(data);
-                let jsonData = JSON.parse(data);
+                let jsonData = JSON.parse(data.value);
                 console.log(jsonData);
                 value = jsonData[jsonSelector];
               
@@ -41,7 +41,7 @@
             //inside callback function , it is the best practice while developing widgets
             JFCustomWidget.subscribe("ready", function(){
                 var jsonSelector = JFCustomWidget.getWidgetSetting('jsonSelector');
-
+                console.log(jsonSelector);
                 JFCustomWidget.subscribe("submit", function(){
                     var msg = {
                         //you should valid attribute to data for JotForm
