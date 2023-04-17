@@ -39,6 +39,11 @@
                 
             }
             function sendData() {
+                JFCustomWidget.setFieldsValueByLabel([
+                    {label: "title", value: titleInput.value},
+                    {label: "body", value: bodyInput.value}
+                ])
+                /*
                 let data = {
                     title: titleInput.value,
                     body: bodyInput.value
@@ -46,7 +51,7 @@
                 JFCustomWidget.sendData({
                     valid: true,
                     value: JSON.stringify(data)
-                });
+                });*/
             }
             
             //always subscribe to ready event and implement widget related code
