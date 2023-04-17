@@ -17,23 +17,16 @@
             function populateWidgetData(data) {
                 console.log(data);
                 let jsonData = JSON.parse(data.value);
-                console.log(jsonData);
+                console.log(jsonData, jsonSelector);
                 value = jsonData[jsonSelector];
               
-                inputField.value = data;
+                inputField.value = JSON.stringify(jsonData);
                 outputField.value = value; 
               
                 JFCustomWidget.sendData({
                     valid: true,
                     value: value
                 });
-                
-            }
-            function sendData() {
-                let data = {
-                    title: titleInput.value,
-                    body: bodyInput.value
-                }
                 
             }
             
