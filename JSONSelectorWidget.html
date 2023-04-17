@@ -33,7 +33,7 @@
             //always subscribe to ready event and implement widget related code
             //inside callback function , it is the best practice while developing widgets
             JFCustomWidget.subscribe("ready", function(){
-                var jsonSelector = JFCustomWidget.getWidgetSetting('jsonSelector');
+                var jsonSelector = JFCustomWidget.getWidgetSetting('jsonselector');
                 console.log(jsonSelector);
                 JFCustomWidget.subscribe("submit", function(){
                     var msg = {
