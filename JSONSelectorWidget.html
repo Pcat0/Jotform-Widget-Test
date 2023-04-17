@@ -14,8 +14,10 @@
             let jsonSelector; 
             let value; 
           
-            function populateWidgetData(data) {
+            function populateWidgetData(data.value) {
+                console.log(data);
                 let jsonData = JSON.parse(data);
+                console.log(jsonData);
                 value = jsonData[jsonSelector];
               
                 inputField.value = data;
