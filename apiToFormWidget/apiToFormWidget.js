@@ -1,0 +1,3 @@
+JFCustomWidget.subscribe("ready", function(){
+  
+});
