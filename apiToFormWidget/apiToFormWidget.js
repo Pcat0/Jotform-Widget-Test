@@ -10,7 +10,7 @@ class ApiToFormWidget {
       this.query = event.target.value;
     }); 
     //get widget settings
-    this.apiurl = JFCustomWidget.getWidgetSetting('QuestionLabel');
+    this.apiurl = JFCustomWidget.getWidgetSetting('apiurl');
 
     //TODO: set query on change of apiQueryField
     
