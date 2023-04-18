@@ -38,8 +38,6 @@ class ApiToFormWidget {
     JFCustomWidget.sendSubmit(msg);
   }
   populate(data) {
-    console.log(this);
-    console.log(data);
     this.query = data.value;
   }
 }
