@@ -50,5 +50,5 @@ JFCustomWidget.subscribe("ready", function(){
   widget = new ApiToFormWidget();
   
   JFCustomWidget.subscribe("submit", widget.sendSubmit);
-  JFCustomWidget.subscribe('populate', widget.populateWidgetData);
+  JFCustomWidget.subscribe('populate', widget.populate);
 });
