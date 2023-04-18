@@ -17,11 +17,11 @@ class ApiToFormWidget {
   }
   
   get query() {
-    console.log("SET");
+    console.log("GET");
     return this.#query;
   }
   set query(query){
-    console.log("GET");
+    console.log("SET");
     this.apiQueryField = query;
     this.#query = query;
   }
@@ -38,7 +38,7 @@ class ApiToFormWidget {
     JFCustomWidget.sendSubmit(msg);
   }
   populate(data) {
-    this.querry = data.value;
+    this.query = data.value;
   }
 }
 
