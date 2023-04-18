@@ -22,7 +22,7 @@ class ApiToFormWidget {
   }
   set query(query){
     console.log("SET");
-    this.apiQueryField = query;
+    this.apiQueryField.value = query;
     this.#query = query;
   }
   
