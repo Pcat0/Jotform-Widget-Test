@@ -6,7 +6,9 @@ class ApiToFormWidget {
   #query = "";
   constructor() {
     this.apiQueryField = document.querySelector("#apiQuery");
-    
+    this.apiQueryField.addEventListener("change", (event)=>{
+      this.query = event.target.value;
+    }); 
     //get widget settings
     this.apiurl = JFCustomWidget.getWidgetSetting('QuestionLabel');
 
@@ -40,6 +42,7 @@ class ApiToFormWidget {
 
 
 
+let widget;
 
 JFCustomWidget.subscribe("ready", function(){
   widget = new ApiToFormWidget();
