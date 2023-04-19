@@ -2,12 +2,13 @@
 class ApiToFormWidget {
   apiQueryField;
   runQueryButton;
+  lastQueryRan = null;
   config = {};
   #query = "";
   constructor() {
     this.apiQueryField = document.querySelector("#apiQuery");
     this.apiQueryField.addEventListener("change", (event)=>{
-      this.query = event.target.value;
+      populate(event.target.value);
     });
     this.runQueryButton = document.querySelector("#runQuery");
     this.runQueryButton.addEventListener("click", (event)=>{
@@ -42,14 +43,23 @@ class ApiToFormWidget {
     }
     JFCustomWidget.sendSubmit(msg);
   }
-  populate(data) {
-    this.query = data.value;
+  populate(newQuery) {
+    this.query = newQuery;
+
+    if(this.config.autoRun){
+      runAPIQuery();
+    }
+
   }
   
   runAPIQuery(){
-    
-    
-    
+    //Don't rerun an identical query
+    if (lastQueryRan == this.query) return;
+
+    lastQueryRan = this.query;
+
+    console.log("Query ran")
+
     //PlaceHolder
     JFCustomWidget.setFieldsValueByLabel([
         {label: "title", value: `PlaceHolder title ${this.query}`},
@@ -66,5 +76,5 @@ JFCustomWidget.subscribe("ready", function(){
   widget = new ApiToFormWidget();
   
   JFCustomWidget.subscribe("submit", data=>widget.sendSubmit(data));
-  JFCustomWidget.subscribe('populate', data=>widget.populate(data));
+  JFCustomWidget.subscribe('populate', data=>widget.populate(data.value));
 });
