@@ -58,7 +58,7 @@ class ApiToFormWidget {
 
     this.lastQueryRan = this.query;
 
-    console.log("Query ran")
+    console.log("Query ran");
 
     //TODO handle errors 
     fetch(this.config.apiurl + this.query)
