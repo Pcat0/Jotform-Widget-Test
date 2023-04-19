@@ -66,8 +66,8 @@ class ApiToFormWidget {
       .then(data=>{
         console.log(data);
         JFCustomWidget.setFieldsValueByLabel([
-          {label: "title", value: json.title},
-          {label: "body",  value: json.body}
+          {label: "title", value: data.title},
+          {label: "body",  value: data.body}
         ]);
       });
     
