@@ -11,7 +11,7 @@ class ApiToFormWidget {
       this.query = event.target.value;
     });
     this.runQueryButton = document.querySelector("#runQuery");
-    this.runQueryButton.addEventListner("click", (event)=>{
+    this.runQueryButton.addEventListener("click", (event)=>{
       this.runAPIQuery();
     });
     //get widget settings
