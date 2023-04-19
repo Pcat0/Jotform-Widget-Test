@@ -15,7 +15,7 @@ class ApiToFormWidget {
     });
     //get widget settings
     this.config.apiurl = JFCustomWidget.getWidgetSetting('apiurl');
-    this.config.autoRun = JFCustomWidget.getWidgetSetting('autorun');
+    this.config.autoRun = JFCustomWidget.getWidgetSetting('autorun') == "Yes";
     console.log(this.config.autoRun);
     //TODO: set query on change of apiQueryField
     
