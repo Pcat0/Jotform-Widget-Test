@@ -1,6 +1,7 @@
 
 class ApiToFormWidget {
   apiQueryField;
+  runQueryButton;
   apiurl = "";
   
   #query = "";
@@ -8,14 +9,18 @@ class ApiToFormWidget {
     this.apiQueryField = document.querySelector("#apiQuery");
     this.apiQueryField.addEventListener("change", (event)=>{
       this.query = event.target.value;
-    }); 
+    });
+    this.runQueryButton = document.querySelector("#runQuery");
+    this.runQueryButton.addEventListner("click", (event)=>{
+      this.runAPIQuery();
+    });
     //get widget settings
     this.apiurl = JFCustomWidget.getWidgetSetting('apiurl');
 
     //TODO: set query on change of apiQueryField
     
   }
-  
+
   get query() {
     console.log("GET");
     return this.#query;
@@ -39,6 +44,17 @@ class ApiToFormWidget {
   }
   populate(data) {
     this.query = data.value;
+  }
+  
+  runAPIQuery(){
+    
+    
+    
+    //PlaceHolder
+    JFCustomWidget.setFieldsValueByLabel([
+        {label: "title", value: `PlaceHolder title ${this.query}`},
+        {label: "body",  value: `Placeholder body ${this.query}`}
+    ]);
   }
 }
 
