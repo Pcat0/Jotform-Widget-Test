@@ -8,7 +8,7 @@ class ApiToFormWidget {
   constructor() {
     this.apiQueryField = document.querySelector("#apiQuery");
     this.apiQueryField.addEventListener("change", (event)=>{
-      populate(event.target.value);
+      this.populate(event.target.value);
     });
     this.runQueryButton = document.querySelector("#runQuery");
     this.runQueryButton.addEventListener("click", (event)=>{
@@ -47,7 +47,7 @@ class ApiToFormWidget {
     this.query = newQuery;
 
     if(this.config.autoRun){
-      runAPIQuery();
+      this.runAPIQuery();
     }
 
   }
