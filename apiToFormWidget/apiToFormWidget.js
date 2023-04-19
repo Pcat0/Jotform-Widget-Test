@@ -2,8 +2,7 @@
 class ApiToFormWidget {
   apiQueryField;
   runQueryButton;
-  apiurl = "";
-  
+  config = {};
   #query = "";
   constructor() {
     this.apiQueryField = document.querySelector("#apiQuery");
@@ -15,8 +14,9 @@ class ApiToFormWidget {
       this.runAPIQuery();
     });
     //get widget settings
-    this.apiurl = JFCustomWidget.getWidgetSetting('apiurl');
-
+    this.config.apiurl = JFCustomWidget.getWidgetSetting('apiurl');
+    this.config.autoRun = JFCustomWidget.getWidgetSetting('autorun');
+    console.log(this.config.autoRun);
     //TODO: set query on change of apiQueryField
     
   }
