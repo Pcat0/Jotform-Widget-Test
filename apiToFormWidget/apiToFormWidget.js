@@ -63,6 +63,7 @@ class ApiToFormWidget {
     
 
     fetch(this.config.apiurl + this.query).then((response)=>{
+      console.log(response);
       response = response.json();
       JFCustomWidget.setFieldsValueByLabel([
         {label: "title", value: response.title},
