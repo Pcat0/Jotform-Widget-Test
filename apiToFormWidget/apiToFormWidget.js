@@ -60,11 +60,16 @@ class ApiToFormWidget {
 
     console.log("Query ran")
 
-    //PlaceHolder
-    JFCustomWidget.setFieldsValueByLabel([
-        {label: "title", value: `PlaceHolder title ${this.query}`},
-        {label: "body",  value: `Placeholder body ${this.query}`}
-    ]);
+    
+
+    fetch(this.config.apiurl + this.query).then((response)=>{
+      response = response.json();
+      JFCustomWidget.setFieldsValueByLabel([
+        {label: "title", value: response.title},
+        {label: "body",  value: response.body}
+      ]);
+    });
+    
   }
 }
 
