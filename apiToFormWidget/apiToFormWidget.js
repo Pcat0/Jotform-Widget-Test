@@ -60,16 +60,16 @@ class ApiToFormWidget {
 
     console.log("Query ran")
 
-    
-
-    fetch(this.config.apiurl + this.query).then((response)=>{
-      console.log(response);
-      response = response.json();
-      JFCustomWidget.setFieldsValueByLabel([
-        {label: "title", value: response.title},
-        {label: "body",  value: response.body}
-      ]);
-    });
+    //TODO handle errors 
+    fetch(this.config.apiurl + this.query)
+      .then(response=>response.json())
+      .then(data=>{
+        console.log(data);
+        JFCustomWidget.setFieldsValueByLabel([
+          {label: "title", value: json.title},
+          {label: "body",  value: json.body}
+        ]);
+      });
     
   }
 }
