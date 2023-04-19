@@ -54,9 +54,9 @@ class ApiToFormWidget {
   
   runAPIQuery(){
     //Don't rerun an identical query
-    if (lastQueryRan == this.query) return;
+    if (this.lastQueryRan == this.query) return;
 
-    lastQueryRan = this.query;
+    this.lastQueryRan = this.query;
 
     console.log("Query ran")
 
