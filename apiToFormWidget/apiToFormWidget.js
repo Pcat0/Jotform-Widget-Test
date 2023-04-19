@@ -17,6 +17,7 @@ class ApiToFormWidget {
     //get widget settings
     this.config.apiurl = JFCustomWidget.getWidgetSetting('apiurl');
     this.config.autoRun = JFCustomWidget.getWidgetSetting('autorun') == "Yes";
+    this.config.outputFields = JFCustomWidget.getWidgetSetting('outputFields').split("\n");
     console.log(this.config.autoRun);
     //TODO: set query on change of apiQueryField
     
@@ -60,15 +61,18 @@ class ApiToFormWidget {
 
     console.log("Query ran");
 
-    //TODO handle errors 
+    //TODO: handle errors 
     fetch(this.config.apiurl + this.query)
       .then(response=>response.json())
       .then(data=>{
         console.log(data);
-        JFCustomWidget.setFieldsValueByLabel([
-          {label: "title", value: data.title},
-          {label: "body",  value: data.body}
-        ]);
+        let ouput = this.config.outputFields.map((outputField) => {
+          return {
+            label: outputField,
+            value: data[outputField]
+          };
+        });
+        JFCustomWidget.setFieldsValueByLabel(ouput);
       });
     
   }
