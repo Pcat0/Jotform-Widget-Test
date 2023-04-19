@@ -66,14 +66,14 @@ class ApiToFormWidget {
       .then(response=>response.json())
       .then(data=>{
         console.log(data);
-        let ouput = this.config.outputFields.map((outputField) => {
+        let output = this.config.outputFields.map((outputField) => {
           return {
             label: outputField,
             value: data[outputField]
           };
         });
         console.log(output);
-        JFCustomWidget.setFieldsValueByLabel(ouput);
+        JFCustomWidget.setFieldsValueByLabel(output);
       });
     
   }
