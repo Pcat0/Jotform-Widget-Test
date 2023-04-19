@@ -17,7 +17,7 @@ class ApiToFormWidget {
     //get widget settings
     this.config.apiurl = JFCustomWidget.getWidgetSetting('apiurl');
     this.config.autoRun = JFCustomWidget.getWidgetSetting('autorun') == "Yes";
-    this.config.outputFields = JFCustomWidget.getWidgetSetting('outputFields').split("\n");
+    this.config.outputFields = JFCustomWidget.getWidgetSetting('outputfields').split("\n");
     console.log(this.config.autoRun);
     //TODO: set query on change of apiQueryField
     
@@ -72,6 +72,7 @@ class ApiToFormWidget {
             value: data[outputField]
           };
         });
+        console.log(output);
         JFCustomWidget.setFieldsValueByLabel(ouput);
       });
     
