@@ -74,6 +74,9 @@ class ApiToFormWidget {
         });
         console.log(output);
         JFCustomWidget.setFieldsValueByLabel(output);
+        JFCustomWidget.setFieldsValueByLabel([
+          {label: "question:item"}
+        ]);
       });
     
   }
@@ -83,9 +86,13 @@ class ApiToFormWidget {
 
 let widget;
 
-JFCustomWidget.subscribe("ready", function(){
+JFCustomWidget.subscribe("ready", function() {
   widget = new ApiToFormWidget();
   
   JFCustomWidget.subscribe("submit", data=>widget.sendSubmit(data));
   JFCustomWidget.subscribe('populate', data=>widget.populate(data.value));
+  if (!JFCustomWidget.isWidgetOnBuilder()){
+    JFCustomWidget.hideWidgetContainer();
+  }
+  
 });
