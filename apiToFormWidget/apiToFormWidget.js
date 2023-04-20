@@ -17,10 +17,15 @@ class ApiToFormWidget {
     //get widget settings
     this.config.apiurl = JFCustomWidget.getWidgetSetting('apiurl');
     this.config.autoRun = JFCustomWidget.getWidgetSetting('autorun') == "Yes";
+    this.config.hide = JFCustomWidget.getWidgetSetting('hide') == "Yes";
     this.config.outputFields = JFCustomWidget.getWidgetSetting('outputfields').split("\n");
     console.log(this.config.autoRun);
-    //TODO: set query on change of apiQueryField
     
+
+    if (!JFCustomWidget.isWidgetOnBuilder() && this.config.hide){
+      JFCustomWidget.hideWidgetContainer();
+    }
+
   }
 
   get query() {
@@ -91,8 +96,6 @@ JFCustomWidget.subscribe("ready", function() {
   
   JFCustomWidget.subscribe("submit", data=>widget.sendSubmit(data));
   JFCustomWidget.subscribe('populate', data=>widget.populate(data.value));
-  if (!JFCustomWidget.isWidgetOnBuilder()){
-    JFCustomWidget.hideWidgetContainer();
-  }
+  
   
 });
