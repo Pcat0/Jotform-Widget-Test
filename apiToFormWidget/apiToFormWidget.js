@@ -21,7 +21,7 @@ class ApiToFormWidget {
     this.config.outputFields = JFCustomWidget.getWidgetSetting('outputfields').split("\n");
     console.log(this.config.autoRun);
     
-
+    //hide if widget is set to hidden and we are not in the form builder
     if (!JFCustomWidget.isWidgetOnBuilder() && this.config.hide){
       JFCustomWidget.hideWidgetContainer();
     }
@@ -45,7 +45,7 @@ class ApiToFormWidget {
   sendSubmit() {
     let msg = {
       valid: true, //TODO: add valid logic
-      value: query
+      value: this.query
     }
     JFCustomWidget.sendSubmit(msg);
   }
@@ -70,14 +70,12 @@ class ApiToFormWidget {
     fetch(this.config.apiurl + this.query)
       .then(response=>response.json())
       .then(data=>{
-        console.log(data);
         let output = this.config.outputFields.map((outputField) => {
           return {
             label: outputField,
             value: data[outputField]
           };
         });
-        console.log(output);
         JFCustomWidget.setFieldsValueByLabel(output);
         JFCustomWidget.setFieldsValueByLabel([
           {label: "question:item"}
