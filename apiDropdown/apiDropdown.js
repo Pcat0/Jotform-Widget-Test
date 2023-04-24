@@ -1,4 +1,4 @@
-class apiDropdown {
+class ApiDropdown {
     selectionField = document.querySelector("#apiDropdown");
     constructor() {
         //this.selectField = document.querySelector("#apiDropdown");
@@ -11,4 +11,4 @@ class apiDropdown {
         this.selectionField.appendChild(option);
     }
 }
-let apiDropdown = new apiDropdown();
+let apiDropdown = new ApiDropdown();
