@@ -2,7 +2,7 @@ class ApiDropdown {
     selectionField = document.querySelector("#apiDropdown");
     constructor() {
         //this.selectField = document.querySelector("#apiDropdown");
-        addOption("test");
+        this.addOption("test");
     }
     addOption(option){
         var option = document.createElement('option');
