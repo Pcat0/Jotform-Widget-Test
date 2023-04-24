@@ -11,4 +11,9 @@ class ApiDropdown {
         this.selectionField.appendChild(option);
     }
 }
-let apiDropdown = new ApiDropdown();
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    let apiDropdown = new ApiDropdown();
+});
+
