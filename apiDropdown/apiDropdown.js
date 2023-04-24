@@ -12,8 +12,8 @@ class ApiDropdown {
     }
 }
 
-
+let apiDropdown;
 document.addEventListener("DOMContentLoaded", () => {
-    let apiDropdown = new ApiDropdown();
+    apiDropdown = new ApiDropdown();
 });
 
