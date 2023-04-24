@@ -4,10 +4,10 @@ class ApiDropdown {
         this.selectionField = document.querySelector("#apiDropdown");
         //this.addOption("test");
     }
-    addOption(option){
+    addOption(optionText){
         var option = document.createElement('option');
-        option.value = option;
-        option.innerHTML = option;
+        option.value = optionText;
+        option.innerHTML = optionText;
         this.selectionField.appendChild(option);
     }
 }
