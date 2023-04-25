@@ -2,7 +2,7 @@ class ApiDropdownWidget {
     selectionField = document.querySelector("#apiDropdown");
     constructor() {
         //this.selectionField = document.querySelector("#apiDropdown");
-        fetch(this.config.apiurl + this.query)
+        fetch("https://jsonplaceholder.typicode.com/comments")
             .then(response=>response.json())
             .then(data=>{
                 data.forEach(comment => {
