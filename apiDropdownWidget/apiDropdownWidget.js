@@ -6,7 +6,7 @@ class ApiDropdownWidget {
             .then(response=>response.json())
             .then(data=>{
                 data.forEach(comment => {
-                    addOption(comment.name, comment.id);
+                    this.addOption(comment.name, comment.id);
                 });
             });
 
