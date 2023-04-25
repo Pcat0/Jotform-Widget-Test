@@ -9,12 +9,12 @@ class ApiDropdownWidget {
                     this.addOption(comment.name, comment.id);
                 });
             });
-
+        
     }
-    addOption(optionText, optionValue){
+    addOption(optionText, optionValue = optionText){
         var option = document.createElement('option');
         option.value = optionText;
-        option.innerHTML = optionText;
+        option.innerHTML = optionValue;
         this.selectionField.appendChild(option);
     }
 }
