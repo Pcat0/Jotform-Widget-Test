@@ -15,8 +15,8 @@ class ApiDropdownWidget {
     }
     addOption(optionText, optionValue = optionText){
         var option = document.createElement('option');
-        option.value = optionText;
-        option.innerHTML = optionValue;
+        option.value = optionValue;
+        option.innerHTML = optionText;
         this.selectionField.appendChild(option);
     }
 }
