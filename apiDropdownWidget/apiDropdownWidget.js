@@ -1,15 +1,17 @@
 class ApiDropdownWidget {
     selectionField = document.querySelector("#apiDropdown");
     constructor() {
-        //this.selectionField = document.querySelector("#apiDropdown");
-        fetch("https://jsonplaceholder.typicode.com/comments")
+        this.loadOptionsFromURL("https://jsonplaceholder.typicode.com/comments");
+        
+    }
+    loadOptionsFromURL(url){
+        fetch(url)
             .then(response=>response.json())
             .then(data=>{
                 data.forEach(comment => {
                     this.addOption(comment.name, comment.id);
                 });
             });
-        
     }
     addOption(optionText, optionValue = optionText){
         var option = document.createElement('option');
@@ -18,10 +20,10 @@ class ApiDropdownWidget {
         this.selectionField.appendChild(option);
     }
 }
-
 let widget;
-document.addEventListener("DOMContentLoaded", () => {
+function ready(){
     widget = new ApiDropdownWidget();
-    //test
-});
 
+}
+JFCustomWidget.subscribe("ready", ready);
+  
