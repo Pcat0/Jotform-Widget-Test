@@ -2,12 +2,16 @@ class ApiDropdownWidget {
     selectionField = document.querySelector("#apiDropdown");
     constructor() {
         //this.selectionField = document.querySelector("#apiDropdown");
-        this.addOption("Test A");
-        this.addOption("Test B");
-        this.addOption("Test C");
+        fetch(this.config.apiurl + this.query)
+            .then(response=>response.json())
+            .then(data=>{
+                data.forEach(comment => {
+                    addOption(comment.name, comment.id);
+                });
+            });
 
     }
-    addOption(optionText){
+    addOption(optionText, optionValue){
         var option = document.createElement('option');
         option.value = optionText;
         option.innerHTML = optionText;
