@@ -1,4 +1,4 @@
-class ApiDropdown {
+class ApiDropdownWidget {
     selectionField = document.querySelector("#apiDropdown");
     constructor() {
         //this.selectionField = document.querySelector("#apiDropdown");
@@ -15,9 +15,9 @@ class ApiDropdown {
     }
 }
 
-let apiDropdown;
+let widget;
 document.addEventListener("DOMContentLoaded", () => {
-    apiDropdown = new ApiDropdown();
+    widget = new ApiDropdownWidget();
     //test
 });
 
