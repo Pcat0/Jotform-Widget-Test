@@ -1,5 +1,7 @@
 class ApiDropdownWidget {
     selectionField = document.querySelector("#apiDropdown");
+    config = {};
+
     constructor() {
 
         //load settings
