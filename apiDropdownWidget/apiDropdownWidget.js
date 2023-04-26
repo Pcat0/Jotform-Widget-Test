@@ -1,13 +1,24 @@
 class ApiDropdownWidget {
     selectionField = document.querySelector("#apiDropdown");
     constructor() {
-        this.loadOptionsFromURL("https://jsonplaceholder.typicode.com/comments");
-        
+
+        //load settings
+        this.config.apiurl = JFCustomWidget.getWidgetSetting('apiurl');
+
+
+        this.loadOptionsFromURL(this.config.apiurl);
+
+    }
+    clearOptions(){
+        this.selectionField.innerHTML = '';
     }
     loadOptionsFromURL(url){
         fetch(url)
             .then(response=>response.json())
             .then(data=>{
+                this.clearOptions();
+                this.addOption("Please Select","");
+
                 data.forEach(comment => {
                     this.addOption(comment.name, comment.id);
                 });
