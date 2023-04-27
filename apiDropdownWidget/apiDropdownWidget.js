@@ -11,13 +11,13 @@ class ApiDropdownWidget {
         this.loadOptionsFromURL(this.config.apiurl);
 
         //register event listeners 
-        this.selectionField.addEventListener("onchange", e=>this.sendData());
+        this.selectionField.addEventListener("onChange", e=>this.sendData());
     }
     get isValid() {
         return this.selectionField.selectedIndex < 1;
     }
     get selectedValue() { 
-        return this.selectedValue.value;
+        return this.selectionField.value;
     }
     sendData() {
         let msg = {
