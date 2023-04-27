@@ -5,14 +5,13 @@
         <script src="//js.jotform.com/JotFormCustomWidget.min.js"></script>
         <script src='/Jotform-Widget-Test/apiDropdownWidget/apiDropdownWidget.js'></script>
         <style>
-            body {
+            /*body {
                 margin: 0px;
-            }
+            }*/
             .form-dropdown {
                 /*min-width: 100%;
                 max-width: 100%;*/
                 width: 310px;
-                /*pointer-events: none;*/
                 height: 2.5em;
                 background-color: #fff;
                 border-color: #b8bdc9;
@@ -32,9 +31,13 @@
                 outline: 0;
                 margin: 0;
                 text-align: left;
-                writing-mode: horizontal-tb !important;
                 appearance: none;
+                
+            }
 
+            .form-dropdown:hover, .form-dropdown:focus {
+                border-color: #2e69ff;
+                box-shadow: 0 0 0 3px rgba(46, 105, 255, .25);
             }
             option {
                 font-weight: normal;
