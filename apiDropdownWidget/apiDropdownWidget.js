@@ -6,10 +6,32 @@ class ApiDropdownWidget {
 
         //load settings
         this.config.apiurl = JFCustomWidget.getWidgetSetting('apiurl');
-
-
+        
+        //setup html
         this.loadOptionsFromURL(this.config.apiurl);
 
+        //register event listeners 
+        this.selectionField.addEventListener("onchange", e=>this.sendData());
+    }
+    get isValid() {
+        return this.selectionField.selectedIndex < 1;
+    }
+    get selectedValue() { 
+        return this.selectedValue.value;
+    }
+    sendData() {
+        let msg = {
+            valid: this.isValid,
+            value: this.selectedValue
+        }
+        JFCustomWidget.sendData(msg);
+    }
+    sendSubmit() {
+        let msg = {
+            valid: this.isValid,
+            value: this.selectedValue
+        }
+        JFCustomWidget.sendSubmit(msg);
     }
     clearOptions(){
         this.selectionField.innerHTML = '';
@@ -37,6 +59,7 @@ let widget;
 function ready(){
     widget = new ApiDropdownWidget();
 
+    JFCustomWidget.subscribe("submit", data=>widget.sendSubmit());
 }
 JFCustomWidget.subscribe("ready", ready);
   
