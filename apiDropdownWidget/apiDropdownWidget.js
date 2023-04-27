@@ -11,7 +11,7 @@ class ApiDropdownWidget {
         this.loadOptionsFromURL(this.config.apiurl);
 
         //register event listeners 
-        this.selectionField.addEventListener("onChange", e=>this.sendData());
+        this.selectionField.addEventListener("change", e=>this.sendData());
     }
     get isValid() {
         return this.selectionField.selectedIndex < 1;
