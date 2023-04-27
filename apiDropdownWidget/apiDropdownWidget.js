@@ -1,7 +1,10 @@
 class ApiDropdownWidget {
+    #selectedValue = "";
+
     selectionField = document.querySelector("#apiDropdown");
     config = {};
 
+    
     constructor() {
 
         //load settings
@@ -11,13 +14,23 @@ class ApiDropdownWidget {
         this.loadOptionsFromURL(this.config.apiurl);
 
         //register event listeners 
-        this.selectionField.addEventListener("change", e=>this.sendData());
+        this.selectionField.addEventListener("change", e=>{
+            console.log(e);
+            this.selectedValue = this.selectionField.value;
+            this.sendData();
+        });
     }
     get isValid() {
         return this.selectionField.selectedIndex < 1;
     }
+    set selectedValue(value) {
+        this.#selectedValue = value;
+        this.selectionField.value = value; 
+        //this might be a dumb place to call sendData
+        //this.sendData();
+    }
     get selectedValue() { 
-        return this.selectionField.value;
+        return this.#selectedValue;
     }
     sendData() {
         let msg = {
@@ -46,6 +59,8 @@ class ApiDropdownWidget {
                 data.forEach(comment => {
                     this.addOption(comment.name, comment.id);
                 });
+
+                this.selectionField.value = this.selectedValue; //visually select current selected option. 
             });
     }
     addOption(optionText, optionValue = optionText){
@@ -54,12 +69,17 @@ class ApiDropdownWidget {
         option.innerHTML = optionText;
         this.selectionField.appendChild(option);
     }
+    populate(newValue) {
+        this.selectedValue = newValue;
+
+    }
 }
 let widget;
 function ready(){
     widget = new ApiDropdownWidget();
 
     JFCustomWidget.subscribe("submit", data=>widget.sendSubmit());
+    JFCustomWidget.subscribe('populate', data=>widget.populate(data.value));
 }
 JFCustomWidget.subscribe("ready", ready);
   
