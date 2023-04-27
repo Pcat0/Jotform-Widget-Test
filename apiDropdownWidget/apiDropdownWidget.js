@@ -15,7 +15,6 @@ class ApiDropdownWidget {
 
         //register event listeners 
         this.selectionField.addEventListener("change", e=>{
-            console.log(e);
             this.selectedValue = this.selectionField.value;
             this.sendData();
         });
@@ -23,6 +22,9 @@ class ApiDropdownWidget {
     get isValid() {
         return this.selectionField.selectedIndex < 1;
     }
+    //to solve the edge case where populate is called before the options are loaded
+    //and where this field is set to a value that is no longer a valid option,
+    //we store our own "selectedValue" inside of relying on the HTML "value" field. 
     set selectedValue(value) {
         this.#selectedValue = value;
         this.selectionField.value = value; 
@@ -82,4 +84,4 @@ function ready(){
     JFCustomWidget.subscribe('populate', data=>widget.populate(data.value));
 }
 JFCustomWidget.subscribe("ready", ready);
-  
+//https://jsonplaceholder.typicode.com/comments
