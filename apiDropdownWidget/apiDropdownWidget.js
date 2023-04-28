@@ -9,6 +9,8 @@ class ApiDropdownWidget {
 
         //load settings
         this.config.apiurl = JFCustomWidget.getWidgetSetting('apiurl');
+        this.config.labelName = JFCustomWidget.getWidgetSetting('labelname');
+        this.config.valueName = JFCustomWidget.getWidgetSetting('valuename');
         
         //setup html
         this.loadOptionsFromURL(this.config.apiurl);
@@ -58,9 +60,10 @@ class ApiDropdownWidget {
                 this.clearOptions();
                 this.addOption("Please Select","");
 
-                data.forEach(comment => {
-                    this.addOption(comment.name, comment.id);
-                });
+                data.forEach(dataRow=>this.addOption(
+                    dataRow[this.config.labelName], 
+                    dataRow[this.config.valueName]
+                ));
 
                 this.selectionField.value = this.selectedValue; //visually select current selected option. 
             });//TODO: add error handling 
