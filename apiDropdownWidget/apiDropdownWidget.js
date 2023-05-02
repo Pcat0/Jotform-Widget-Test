@@ -67,7 +67,7 @@ class ApiDropdownWidget {
 
                 this.selectionField.value = this.selectedValue; //visually select current selected option. 
             }).catch(err => {
-                console.error(err);
+                console.log(err);
             })
     }
     addOption(optionText, optionValue = optionText){
