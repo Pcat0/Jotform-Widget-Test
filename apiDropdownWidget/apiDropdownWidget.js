@@ -14,7 +14,7 @@ class ApiDropdownWidget {
         this.config.valueName = JFCustomWidget.getWidgetSetting('valuename');
         
         //setup html
-        this.loadOptionsFromURL(this.config.apiurl);
+        this.optionsInit();
 
         //register event listeners 
         this.selectionField.addEventListener("change", e=>{
@@ -36,6 +36,10 @@ class ApiDropdownWidget {
     }
     get selectedValue() { 
         return this.#selectedValue;
+    }
+    optionsInit(){
+        this.loadErrMessageElement.style.display = "none";
+        this.loadOptionsFromURL(this.config.apiurl);
     }
     sendData() {
         let msg = {
