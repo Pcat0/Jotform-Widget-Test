@@ -71,6 +71,9 @@
             .form-error-button:hover {
                 filter: brightness(90%);
             }
+            .form-error-button:active {
+                filter: brightness(70%S);
+            }
         </style>
     </head>
     <body>
@@ -82,7 +85,7 @@
                 <!--<img src="https://cdn.jotfor.ms/images/exclamation-octagon.png"> -->
                 <span class="error-navigation-message">Unable to load options.</span>
                 <!-- <span style="text-decoration: underline; cursor:pointer;" onclick="widget.optionsInit();">retry</span> -->
-                <button class="form-error-button">retry</button>
+                <button class="form-error-button" onclick="widget.optionsInit();">retry</button>
                 <!-- <div class="form-error-arrow"><div class="form-error-arrow-inner"></div></div> -->
             </div>
         </div>
