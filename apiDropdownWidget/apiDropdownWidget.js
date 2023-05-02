@@ -66,7 +66,9 @@ class ApiDropdownWidget {
                 ));
 
                 this.selectionField.value = this.selectedValue; //visually select current selected option. 
-            });//TODO: add error handling 
+            }).catch(err => {
+                console.error(err);
+            })
     }
     addOption(optionText, optionValue = optionText){
         var option = document.createElement('option');
