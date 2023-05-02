@@ -2,6 +2,7 @@ class ApiDropdownWidget {
     #selectedValue = "";
 
     selectionField = document.querySelector("#apiDropdown");
+    loadErrMessageElement = document.querySelector("#loadErrMessage");
     config = {};
 
     
@@ -68,7 +69,8 @@ class ApiDropdownWidget {
                 this.selectionField.value = this.selectedValue; //visually select current selected option. 
             }).catch(err => {
                 console.log(err);
-            })
+                loadErrMessageElement.style.display = "initial";
+            });
     }
     addOption(optionText, optionValue = optionText){
         var option = document.createElement('option');
