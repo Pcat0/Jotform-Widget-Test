@@ -61,6 +61,15 @@
                 width: auto;
                 padding: .25em .5em .25em 1.625em
             }
+            .form-error-button {
+                color:#f23a3c;
+                background-color: #fff;
+                border: none;
+                border-radius: 4px;
+            }
+            .form-error-button:hover {
+                filter: brightness(90%);
+            }
         </style>
     </head>
     <body>
@@ -68,9 +77,11 @@
             <select class="form-dropdown is-active" id="apiDropdown" name="apiDropdown" style="width:310px" data-component="dropdown" aria-label="test">
                 <option value="">Loading......</option>
             </select>
-            <div id="loadErrMessage" class="form-error-message" style="display:none;" role="alert">
-                <!--<img src="https://cdn.jotfor.ms/images/exclamation-octagon.png">-->
+            <div id="loadErrMessage" class="form-error-message"  role="alert">
+                <!--<img src="https://cdn.jotfor.ms/images/exclamation-octagon.png"> style="display:none;"-->
                 <span class="error-navigation-message">Unable to load options.</span>
+                <span style="text-decoration: underline; cursor:pointer;" onclick="widget.loadOptionsFromURL(widget.config.apiurl);">retry</span>
+                <!--<button class="form-error-button">retry</button>-->
                 <!-- <div class="form-error-arrow"><div class="form-error-arrow-inner"></div></div> -->
             </div>
         </div>
