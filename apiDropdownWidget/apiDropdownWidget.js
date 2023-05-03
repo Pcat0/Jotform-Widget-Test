@@ -4,7 +4,6 @@ class ApiDropdownWidget {
     selectionField = document.querySelector("#apiDropdown");
     loadErrMessageElement = document.querySelector("#loadErrMessage");
     config = {};
-
     
     constructor() {
 
@@ -13,7 +12,7 @@ class ApiDropdownWidget {
         this.config.labelName = JFCustomWidget.getWidgetSetting('labelname');
         this.config.valueName = JFCustomWidget.getWidgetSetting('valuename');
         
-        //setup html
+        // Initialize the options for the dropdown
         this.optionsInit();
 
         //register event listeners 
@@ -22,6 +21,8 @@ class ApiDropdownWidget {
             this.sendData();
         });
     }
+
+    //check if the use has selected a valid option 
     get isValid() {
         return this.selectionField.selectedIndex < 1;
     }
@@ -37,10 +38,14 @@ class ApiDropdownWidget {
     get selectedValue() { 
         return this.#selectedValue;
     }
+
+    //Initialize the dropdown
     optionsInit(){
-        this.loadErrMessageElement.style.display = "none";
+        this.loadErrMessageElement.style.display = "none"; // Make sure the error message is hidden
         this.loadOptionsFromURL(this.config.apiurl);
     }
+
+    // Sends the selected value of the dropdown to JotForm
     sendData() {
         let msg = {
             valid: this.isValid,
@@ -48,6 +53,8 @@ class ApiDropdownWidget {
         }
         JFCustomWidget.sendData(msg);
     }
+
+    // Sends the selected value of the dropdown to JotForm when the form is submitted
     sendSubmit() {
         let msg = {
             valid: this.isValid,
@@ -55,16 +62,22 @@ class ApiDropdownWidget {
         }
         JFCustomWidget.sendSubmit(msg);
     }
+
+    // Function to clear all the options from the dropdown
     clearOptions(){
         this.selectionField.innerHTML = '';
     }
-    loadOptionsFromURL(url){
-        fetch(url)
-            .then(response=>response.json())
-            .then(data=>{
-                this.clearOptions();
-                this.addOption("Please Select","");
 
+    // Function to load the options from the API and add them to the HTML of the dropdown
+    loadOptionsFromURL(url) {
+        // Fetch the data from the API
+        fetch(url)
+            .then(response=>response.json()) //convert response to JSON
+            .then(data=>{
+                this.clearOptions(); // Clear the options from the dropdown
+                this.addOption("Please Select",""); // Add the default "Please Select" option to the dropdown
+
+                // Loop through the data and add each option to the dropdown
                 data.forEach(dataRow=>this.addOption(
                     dataRow[this.config.labelName], 
                     dataRow[this.config.valueName]
@@ -72,16 +85,20 @@ class ApiDropdownWidget {
 
                 this.selectionField.value = this.selectedValue; //visually select current selected option. 
             }).catch(err => {
-                console.log(err);
+                // Display the error message if the API call fails
+                console.error(err);
                 this.loadErrMessageElement.style.display = "initial";
             });
     }
+    //Adds an option to the dropdown 
     addOption(optionText, optionValue = optionText){
         var option = document.createElement('option');
         option.value = optionValue;
         option.innerHTML = optionText;
         this.selectionField.appendChild(option);
     }
+    //Change the currenly selected option without sending data to Jotform 
+    //used when Jotform sends a "populate" event
     populate(newValue) {
         this.selectedValue = newValue;
 
