@@ -90,7 +90,6 @@ class ApiAutoCompleteWidget {
         option.value = optionValue;
         this.datalistField.appendChild(option);
 
-        options.push();
     }
     //Change the currenly selected option without sending data to Jotform 
     //used when Jotform sends a "populate" event
