@@ -4,7 +4,7 @@ class ApiAutoCompleteWidget {
     inputField = document.querySelector("#apiAutoComplete");
     loadErrMessageElement = document.querySelector("#loadErrMessage");
     config = {};
-    
+
     constructor() {
 
         //load settings
@@ -23,7 +23,11 @@ class ApiAutoCompleteWidget {
 
     //check if the use has selected a valid option 
     get isValid() {
-        return true; //TODO: add valid logic
+        return this.options.includes(this.inputValue);
+    }
+
+    get options() {
+        return [...this.datalistField.options];
     }
 
     set inputValue(value) {
@@ -85,6 +89,8 @@ class ApiAutoCompleteWidget {
         var option = document.createElement('option');
         option.value = optionValue;
         this.datalistField.appendChild(option);
+
+        options.push();
     }
     //Change the currenly selected option without sending data to Jotform 
     //used when Jotform sends a "populate" event
