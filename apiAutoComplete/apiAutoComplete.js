@@ -1,5 +1,4 @@
 class ApiAutoCompleteWidget {
-    #selectedValue = "";
 
     datalistField = document.querySelector("#optionsDatalist");
     inputField = document.querySelector("#apiAutoComplete");
@@ -17,7 +16,7 @@ class ApiAutoCompleteWidget {
 
         //register event listeners 
         this.inputField.addEventListener("change", e => {
-            this.selectedValue = this.inputField.value;
+            this.inputValue = this.inputField.value;
             this.sendData();
         });
     }
@@ -26,17 +25,13 @@ class ApiAutoCompleteWidget {
     get isValid() {
         return this.datalistField.selectedIndex < 1;
     }
-    //to solve the edge case where populate is called before the options are loaded
-    //and where this field is set to a value that is no longer a valid option,
-    //we store our own "selectedValue" inside of relying on the HTML "value" field. 
-    set selectedValue(value) {
-        this.#selectedValue = value;
+
+    set inputValue(value) {
+        //this.#selectedValue = value;
         this.inputField.value = value; 
-        //this might be a dumb place to call sendData
-        //this.sendData();
     }
-    get selectedValue() { 
-        return this.#selectedValue;
+    get inputValue() { 
+        return this.inputField.value;
     }
 
     //Initialize the dropdown
@@ -49,7 +44,7 @@ class ApiAutoCompleteWidget {
     sendData() {
         let msg = {
             valid: this.isValid,
-            value: this.selectedValue
+            value: this.inputValue
         }
         JFCustomWidget.sendData(msg);
     }
@@ -58,7 +53,7 @@ class ApiAutoCompleteWidget {
     sendSubmit() {
         let msg = {
             valid: this.isValid,
-            value: this.selectedValue
+            value: this.inputValue
         }
         JFCustomWidget.sendSubmit(msg);
     }
@@ -75,14 +70,11 @@ class ApiAutoCompleteWidget {
             .then(response=>response.json()) //convert response to JSON
             .then(data=>{
                 this.clearOptions(); // Clear the options from the dropdown
-                // this.addOption("Please Select",""); // Add the default "Please Select" option to the dropdown
 
                 // Loop through the data and add each option to the dropdown
                 data.forEach(dataRow=>this.addOption(
                     dataRow[this.config.valueName]
                 ));
-
-                this.datalistField.value = this.selectedValue; //visually select current selected option. 
             }).catch(err => {
                 // Display the error message if the API call fails
                 console.error(err);
@@ -98,7 +90,7 @@ class ApiAutoCompleteWidget {
     //Change the currenly selected option without sending data to Jotform 
     //used when Jotform sends a "populate" event
     populate(newValue) {
-        this.selectedValue = newValue;
+        this.inputValue = newValue;
     }
 }
 let widget;
