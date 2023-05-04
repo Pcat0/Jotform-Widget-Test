@@ -1,7 +1,8 @@
 class ApiAutoCompleteWidget {
     #selectedValue = "";
 
-    selectionField = document.querySelector("#optionsDatalist");
+    datalistField = document.querySelector("#optionsDatalist");
+    inputField = document.querySelector("#apiAutoComplete");
     loadErrMessageElement = document.querySelector("#loadErrMessage");
     config = {};
     
@@ -15,22 +16,22 @@ class ApiAutoCompleteWidget {
         this.optionsInit();
 
         //register event listeners 
-        this.selectionField.addEventListener("change", e=>{
-            this.selectedValue = this.selectionField.value;
+        this.datalistField.addEventListener("change", e => {
+            this.selectedValue = this.inputField.value;
             this.sendData();
         });
     }
 
     //check if the use has selected a valid option 
     get isValid() {
-        return this.selectionField.selectedIndex < 1;
+        return this.datalistField.selectedIndex < 1;
     }
     //to solve the edge case where populate is called before the options are loaded
     //and where this field is set to a value that is no longer a valid option,
     //we store our own "selectedValue" inside of relying on the HTML "value" field. 
     set selectedValue(value) {
         this.#selectedValue = value;
-        this.selectionField.value = value; 
+        this.inputField.value = value; 
         //this might be a dumb place to call sendData
         //this.sendData();
     }
@@ -64,7 +65,7 @@ class ApiAutoCompleteWidget {
 
     // Function to clear all the options from the dropdown
     clearOptions(){
-        this.selectionField.innerHTML = '';
+        this.datalistField.innerHTML = '';
     }
 
     // Function to load the options from the API and add them to the HTML of the dropdown
@@ -81,7 +82,7 @@ class ApiAutoCompleteWidget {
                     dataRow[this.config.valueName]
                 ));
 
-                this.selectionField.value = this.selectedValue; //visually select current selected option. 
+                this.datalistField.value = this.selectedValue; //visually select current selected option. 
             }).catch(err => {
                 // Display the error message if the API call fails
                 console.error(err);
@@ -92,7 +93,7 @@ class ApiAutoCompleteWidget {
     addOption(optionValue){
         var option = document.createElement('option');
         option.value = optionValue;
-        this.selectionField.appendChild(option);
+        this.datalistField.appendChild(option);
     }
     //Change the currenly selected option without sending data to Jotform 
     //used when Jotform sends a "populate" event
