@@ -3,7 +3,7 @@
     <head>
         <!-- todo: change to asyc load -->
         <script src="//js.jotform.com/JotFormCustomWidget.min.js"></script>
-        <script src='/Jotform-Widget-Test/apiDropdownWidget/apiDropdownWidget.js'></script>
+        <script src='/Jotform-Widget-Test/apiAutoComplete/apiAutoComplete.js'></script>
         <style>
             body {
                 margin: 3px;
@@ -23,11 +23,7 @@
                 border-style: solid;
                 display: block;
                 font-family: "Lucida Grande";
-                padding: 0 1.875em 0 0.625em;
-                background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='10' height='6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2357647E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-                background-position: right 10px bottom 50%;
-                background-size: 0.625em;
-                background-repeat: no-repeat;
+                /* padding: 0 1.875em 0 0.625em; */
                 box-sizing: border-box;
                 outline: 0;
                 margin: 0;
@@ -78,9 +74,9 @@
     </head>
     <body>
         <div id="main">
-            <select class="form-dropdown is-active" id="apiDropdown" name="apiDropdown" style="width:310px" data-component="dropdown" aria-label="test">
-                <option value="">Loading......</option>
-            </select>
+            <input type="search" list="optionsDatalist" class="form-dropdown is-active" id="apiDropdown" name="apiDropdown" style="width:310px" placeholder="test">
+            <datalist id="optionsDatalist"></datalist>
+
             <div id="loadErrMessage" class="form-error-message" style="display:none;" role="alert">
                 <span class="error-navigation-message">Unable to load options.</span>
                 <!-- <span style="text-decoration: underline; cursor:pointer;" onclick="widget.optionsInit();">retry</span> -->
