@@ -9,7 +9,6 @@ class ApiAutoCompleteWidget {
 
         //load settings
         this.config.apiurl = JFCustomWidget.getWidgetSetting('apiurl');
-        this.config.labelName = JFCustomWidget.getWidgetSetting('labelname');
         this.config.valueName = JFCustomWidget.getWidgetSetting('valuename');
         
         // Initialize the options for the dropdown
