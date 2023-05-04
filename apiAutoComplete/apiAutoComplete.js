@@ -16,7 +16,7 @@ class ApiAutoCompleteWidget {
         this.optionsInit();
 
         //register event listeners 
-        this.datalistField.addEventListener("change", e => {
+        this.inputField.addEventListener("change", e => {
             this.selectedValue = this.inputField.value;
             this.sendData();
         });
