@@ -1,6 +1,6 @@
 
 class ApiToFormWidget {
-  apiQueryField = document.querySelector("#apiQuery");;
+  apiQueryField = document.querySelector("#apiQuery");
   runQueryButton = document.querySelector("#runQuery");
   lastQueryRan = null;
   config = {};
@@ -8,10 +8,10 @@ class ApiToFormWidget {
 
   constructor() {
     //setup event listeners
-    this.apiQueryField.addEventListener("change", (event)=>{
+    this.apiQueryField.addEventListener("change", event => {
       this.populate(event.target.value);
     });
-    this.runQueryButton.addEventListener("click", (event)=>{
+    this.runQueryButton.addEventListener("click", event => {
       this.runAPIQuery();
     });
 
@@ -26,14 +26,13 @@ class ApiToFormWidget {
     if (!JFCustomWidget.isWidgetOnBuilder() && this.config.hide){
       JFCustomWidget.hideWidgetContainer();
     }
-
   }
 
   get query() {
     console.log("GET");
     return this.#query;
   }
-  set query(query){
+  set query(query) {
     console.log("SET");
     this.apiQueryField.value = query;
     this.#query = query;
@@ -72,8 +71,8 @@ class ApiToFormWidget {
     //TODO: handle errors 
     //Fetch data from API
     fetch(this.config.apiurl + this.query)
-      .then(response=>response.json())
-      .then(data=>{
+      .then(response => response.json())
+      .then(data => {
         //loop over data coventering it to a format Jotform understands 
         let output = this.config.outputFields.map((outputField) => {
           return {
@@ -96,8 +95,8 @@ JFCustomWidget.subscribe("ready", function() {
   widget = new ApiToFormWidget();
   
   //subscribe to jotformn events
-  JFCustomWidget.subscribe("submit", data=>widget.sendSubmit(data));
-  JFCustomWidget.subscribe('populate', data=>widget.populate(data.value));
+  JFCustomWidget.subscribe("submit", data => widget.sendSubmit(data));
+  JFCustomWidget.subscribe('populate', data => widget.populate(data.value));
   
   
 });
