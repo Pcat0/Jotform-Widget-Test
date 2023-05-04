@@ -58,7 +58,7 @@ class ApiAutoCompleteWidget {
     }
 
     // Function to clear all the options from the datalist
-    clearOptions(){
+    clearOptions() {
         this.datalistField.innerHTML = '';
     }
 
@@ -66,12 +66,12 @@ class ApiAutoCompleteWidget {
     loadOptionsFromURL(url) {
         // Fetch the data from the API
         fetch(url)
-            .then(response=>response.json()) //convert response to JSON
-            .then(data=>{
+            .then(response => response.json()) //convert response to JSON
+            .then(data => {
                 this.clearOptions(); // Clear the options from the datalist
 
                 // Loop through the data and add each option to the datalist
-                data.forEach(dataRow=>this.addOption(
+                data.forEach(dataRow => this.addOption(
                     dataRow[this.config.valueName]
                 ));
             }).catch(err => {
@@ -81,7 +81,7 @@ class ApiAutoCompleteWidget {
             });
     }
     //Adds an option to the datalist 
-    addOption(optionValue){
+    addOption(optionValue) {
         var option = document.createElement('option');
         option.value = optionValue;
         this.datalistField.appendChild(option);
@@ -96,8 +96,8 @@ let widget;
 function ready(){
     widget = new ApiAutoCompleteWidget();
 
-    JFCustomWidget.subscribe("submit", data=>widget.sendSubmit());
-    JFCustomWidget.subscribe('populate', data=>widget.populate(data.value));
+    JFCustomWidget.subscribe("submit", data => widget.sendSubmit());
+    JFCustomWidget.subscribe('populate', data => widget.populate(data.value));
 }
 JFCustomWidget.subscribe("ready", ready);
 //https://jsonplaceholder.typicode.com/comments
