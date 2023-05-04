@@ -23,24 +23,23 @@ class ApiAutoCompleteWidget {
 
     //check if the use has selected a valid option 
     get isValid() {
-        return this.datalistField.selectedIndex < 1;
+        return true; //TODO: add valid logic
     }
 
     set inputValue(value) {
-        //this.#selectedValue = value;
         this.inputField.value = value; 
     }
     get inputValue() { 
         return this.inputField.value;
     }
 
-    //Initialize the dropdown
+    //Initialize the datalist
     optionsInit(){
         this.loadErrMessageElement.style.display = "none"; // Make sure the error message is hidden
         this.loadOptionsFromURL(this.config.apiurl);
     }
 
-    // Sends the selected value of the dropdown to JotForm
+    // Sends the current value of the input to JotForm
     sendData() {
         let msg = {
             valid: this.isValid,
@@ -49,7 +48,7 @@ class ApiAutoCompleteWidget {
         JFCustomWidget.sendData(msg);
     }
 
-    // Sends the selected value of the dropdown to JotForm when the form is submitted
+    // Sends the current value of the input to JotForm when the form is submitted
     sendSubmit() {
         let msg = {
             valid: this.isValid,
@@ -58,20 +57,20 @@ class ApiAutoCompleteWidget {
         JFCustomWidget.sendSubmit(msg);
     }
 
-    // Function to clear all the options from the dropdown
+    // Function to clear all the options from the datalist
     clearOptions(){
         this.datalistField.innerHTML = '';
     }
 
-    // Function to load the options from the API and add them to the HTML of the dropdown
+    // Function to load the options from the API and add them to the HTML of the datalist
     loadOptionsFromURL(url) {
         // Fetch the data from the API
         fetch(url)
             .then(response=>response.json()) //convert response to JSON
             .then(data=>{
-                this.clearOptions(); // Clear the options from the dropdown
+                this.clearOptions(); // Clear the options from the datalist
 
-                // Loop through the data and add each option to the dropdown
+                // Loop through the data and add each option to the datalist
                 data.forEach(dataRow=>this.addOption(
                     dataRow[this.config.valueName]
                 ));
@@ -81,7 +80,7 @@ class ApiAutoCompleteWidget {
                 this.loadErrMessageElement.style.display = "initial";
             });
     }
-    //Adds an option to the dropdown 
+    //Adds an option to the datalist 
     addOption(optionValue){
         var option = document.createElement('option');
         option.value = optionValue;
