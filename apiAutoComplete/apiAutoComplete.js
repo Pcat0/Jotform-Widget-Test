@@ -10,7 +10,7 @@ class ApiAutoCompleteWidget {
         //load settings
         this.config.apiurl = JFCustomWidget.getWidgetSetting('apiurl');
         this.config.valueName = JFCustomWidget.getWidgetSetting('valuename');
-        this.config.forceUppercase = JFCustomWidget.getWidgetSetting('forceuppercase') == 'on';
+        this.config.forceUppercase = JFCustomWidget.getWidgetSetting('forceuppercase') == 'Yes';
 
         // Initialize the options for the dropdown
         this.optionsInit();
