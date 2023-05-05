@@ -10,7 +10,8 @@ class ApiAutoCompleteWidget {
         //load settings
         this.config.apiurl = JFCustomWidget.getWidgetSetting('apiurl');
         this.config.valueName = JFCustomWidget.getWidgetSetting('valuename');
-        
+        this.config.forceUppercase = JFCustomWidget.getWidgetSetting('forceuppercase') == 'on';
+
         // Initialize the options for the dropdown
         this.optionsInit();
 
@@ -26,6 +27,7 @@ class ApiAutoCompleteWidget {
         return this.options.includes(this.inputValue);
     }
 
+    //get array of options
     get options() {
         let optionsArr = [...this.datalistField.options];
         return optionsArr.map(option => option.value); 
@@ -35,7 +37,9 @@ class ApiAutoCompleteWidget {
         this.inputField.value = value; 
     }
     get inputValue() { 
-        return this.inputField.value.toUpperCase(); //TODO: add force uppercase option
+        let value = this.inputField.value;
+        if(this.config.forceUppercase) value = value.toUpperCase(); //uppercase value if "force uppercase" is turned on 
+        return value;
     }
 
     //Initialize the datalist
