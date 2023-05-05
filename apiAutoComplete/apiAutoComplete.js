@@ -27,7 +27,8 @@ class ApiAutoCompleteWidget {
     }
 
     get options() {
-        return [...this.datalistField.options];
+        let optionsArr = [...this.datalistField.options];
+        return optionsArr.map(option => option.value); 
     }
 
     set inputValue(value) {
