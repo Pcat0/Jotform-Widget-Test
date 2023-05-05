@@ -16,7 +16,7 @@ class ApiAutoCompleteWidget {
 
         //register event listeners 
         this.inputField.addEventListener("change", e => {
-            this.inputValue = this.inputField.value;
+            //this.inputValue = this.inputField.value;
             this.sendData();
         });
     }
@@ -34,7 +34,7 @@ class ApiAutoCompleteWidget {
         this.inputField.value = value; 
     }
     get inputValue() { 
-        return this.inputField.value;
+        return this.inputField.value.toUpperCase(); //TODO: add force uppercase option
     }
 
     //Initialize the datalist
